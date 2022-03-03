@@ -1,0 +1,27 @@
+.header-container {
+  display: grid;
+  justify-content: center;
+  padding: 3.875rem 0;
+}
+
+.title {
+  font: clamp(1.5rem, 4vw, 2.25rem) var(--heading-text), sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+
+  /* APLICANDO O GRADIENTE NO TEXTO */
+  background: linear-gradient(180deg, #ef6c00 0%, #db6300 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.separator {
+  width: 90%;
+  height: 1px;
+  background-color: var(--details);
+
+  margin-top: 0.75rem;
+  justify-self: center;
+}
