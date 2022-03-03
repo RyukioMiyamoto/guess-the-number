@@ -1,0 +1,5 @@
+.display-container {
+  display: grid;
+  place-items: center;
+  min-height: 23rem;
+}

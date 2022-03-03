@@ -1,7 +1,7 @@
 .header-container {
   display: grid;
   justify-content: center;
-  padding: 3.875rem 0;
+  padding: 3.875rem 0 0;
 }
 
 .title {

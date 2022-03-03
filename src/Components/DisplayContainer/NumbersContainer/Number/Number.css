@@ -1,0 +1,7 @@
+.numbers-number {
+  font-size: 145px;
+  text-align: center;
+  color: var(--number-correct);
+  align-self: flex-start;
+  line-height: 1;
+}

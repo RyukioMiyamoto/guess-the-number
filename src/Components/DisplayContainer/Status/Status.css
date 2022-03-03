@@ -1,0 +1,24 @@
+.status-container {
+  display: flex;
+  align-self: flex-end;
+  justify-content: center;
+  transform: translateY(-20px);
+  height: 20px;
+  margin-top: 5rem;
+}
+
+.status-message {
+  font: 700 1rem var(--heading-text), sans-serif;
+  letter-spacing: -1px;
+  text-align: center;
+  color: var(--guess-status);
+}
+
+.correct {
+  color: var(--number-correct);
+}
+
+.error {
+  text-transform: uppercase;
+  color: var(--number-error);
+}

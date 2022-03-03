@@ -3,7 +3,7 @@
   --guess-status: #ec6b01;
   --number-guess: #262a34;
   --number-correct: #32bf00;
-  --number-incorrect: #cc3300;
+  --number-error: #cc3300;
   --details: #cfcfcf;
   --disabled: #ddd;
   --placeholder: #9e9e9e;
@@ -21,7 +21,7 @@
 }
 
 body {
-  font: 700 .75rem var(--main-text), sans-serif;
+  font: 700 0.75rem var(--main-text), sans-serif;
   min-height: 100vh;
   background: linear-gradient(180deg, #eee 0%, #fff 100%);
 }

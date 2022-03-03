@@ -1,0 +1,5 @@
+.numbers-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-self: flex-start;
+}
