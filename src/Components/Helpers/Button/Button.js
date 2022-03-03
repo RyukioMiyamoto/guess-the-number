@@ -12,7 +12,7 @@ function restartGame() {
 }
 
 function submitGuess() {
-  console.log("Enviou chute");
+  console.log("Enviou palpite");
 }
 
 const Button = ({ text, className, disabled }) => {

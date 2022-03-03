@@ -27,6 +27,27 @@ body {
 }
 
 .App {
+  display: grid;
+  justify-items: center;
   max-width: 90%;
   margin: 0 auto;
+  padding: 10px;
+}
+
+
+/* OPÇÃO DE ACESSIBILIDADE PARA NAVEGAÇÃO COM TECLADO */
+button:focus,
+input:focus {
+  outline: none;
+  animation: outline 1.25s;
+}
+
+@keyframes outline {
+  from {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  }
+
+  to {
+    box-shadow: none;
+  }
 }

@@ -1,7 +1,12 @@
 .numbers-number {
+  align-self: flex-start;
   font-size: 145px;
   text-align: center;
   color: var(--number-correct);
-  align-self: flex-start;
-  line-height: 1;
+}
+
+@media (min-width: 768px) {
+  .numbers-number {
+    font-size: 180px;
+  }
 }

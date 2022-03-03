@@ -5,8 +5,8 @@
   text-transform: uppercase;
   font: 700 var(--main-text);
   color: #fff;
-  transform: translateY(-17px);
   cursor: pointer;
+  transition: border 0.125s ease;
 }
 
 .restart-btn {
@@ -16,7 +16,7 @@
   position: relative;
 }
 
-.restart-btn::after {
+.restart-btn::before {
   content: "";
   width: 12px;
   height: 12px;
@@ -35,4 +35,10 @@
 .submit-btn:disabled {
   background: var(--disabled);
   cursor: not-allowed;
+}
+
+@media (min-width: 768px) {
+  .restart-btn {
+    align-self: flex-start;
+  }
 }

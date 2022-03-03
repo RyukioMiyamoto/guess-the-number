@@ -22,3 +22,9 @@
   text-transform: uppercase;
   color: var(--number-error);
 }
+
+@media (min-width: 768px) {
+  .status-container {
+    margin-top: 1.25rem;
+  }
+}
