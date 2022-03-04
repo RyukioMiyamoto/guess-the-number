@@ -1,4 +1,5 @@
 .numbers-container {
   display: flex;
   align-self: flex-start;
+  min-height: 200px;
 }

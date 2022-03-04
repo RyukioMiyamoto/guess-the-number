@@ -2,8 +2,8 @@
   align-self: flex-start;
   font-size: 145px;
   text-align: center;
-  color: var(--number-correct);
 }
+
 
 @media (min-width: 768px) {
   .numbers-number {
