@@ -10,18 +10,21 @@
   text-transform: uppercase;
   letter-spacing: -1px;
 
-  /* APLICANDO O GRADIENTE NO TEXTO */
+  /* Aplicando o gradiente no título */
   background: linear-gradient(180deg, #ef6c00 0%, #db6300 100%);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
+  opacity: 0;
+  animation: showDown 1s forwards;
 }
 
 .separator {
-  width: 90%;
+  width: 0;
   height: 1px;
   background-color: var(--details);
 
   margin-top: 0.75rem;
   justify-self: center;
+  animation: stretch 1.5s forwards;
 }

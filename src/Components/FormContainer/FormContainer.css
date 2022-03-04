@@ -3,6 +3,8 @@
   align-items: center;
   gap: 11px;
   margin-top: 3rem;
+  opacity: 0;
+  animation: show 1s forwards;
 }
 
 @media (min-width: 768px) {

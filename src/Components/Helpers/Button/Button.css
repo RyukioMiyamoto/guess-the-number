@@ -19,8 +19,8 @@
 }
 
 .show {
-  opacity: 1;
   pointer-events: all;
+  animation: show 0.75s forwards;
 }
 
 .restart-btn::before {
