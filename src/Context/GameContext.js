@@ -15,7 +15,7 @@ export const GameProvider = ({ children }) => {
   // DISPLAY DO NÚMERO
   const [numberDisplay, setNumberDisplay] = useState(0);
   // PALPITE DO JOGADOR
-  const [playerGuess, setPlayerGuess] = useState("");
+  const [playerGuess, setPlayerGuess] = useState(0);
   // PALPITE CORRETO
   const [correctGuess, setCorrectGuess] = useState(false);
 
@@ -42,7 +42,7 @@ export const GameProvider = ({ children }) => {
         setNumberDisplay(res.status);
         // PARA O JOGO
         setGameStatus(false);
-        // DEFINE QUE HÁ UM ERRO
+        // MUDA ESTADO DO ERRO
         setError(true);
         // JOGA UM ERRO PARA PARAR A FUNÇÃO
         throw new Error();
@@ -51,7 +51,6 @@ export const GameProvider = ({ children }) => {
       const { value } = await res.json();
       // DEFINE O NÚMERO RETORNADO COMO NÚMERO SECRETO
       setSecretNumber(value);
-      console.log(value);
     } catch (err) {
       // PEGA O ERRO JOGADO
       console.error(err);

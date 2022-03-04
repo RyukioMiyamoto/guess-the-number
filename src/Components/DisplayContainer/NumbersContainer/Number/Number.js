@@ -2,23 +2,35 @@ import "./Number.css";
 import { useContext } from "react";
 import GameContext from "../../../../Context/GameContext";
 
-const Number = () => {
-  const { numberDisplay, gameStatus, error, correctGuess } =
-    useContext(GameContext);
+const Number = ({ number }) => {
+  const { error, correctGuess } = useContext(GameContext);
 
-  // CRIA A LÓGICA QUE DEFINE A CLASSE APLICADA NO DISPLAY DO NÚMERO (NEUTRO, ERRO OU ACERTO )
-  // COR NEUTRA
-  let color = "numbers-number";
-  // COR DE ERRO
-  if (error) color = "numbers-number error";
-  // COR DE ACERTO
-  if (correctGuess && !gameStatus) color = "numbers-number correct";
-
+  // O componente de número individual consiste em duas div, superior e inferior, que terão suas
+  // bordas coloridas conforme estado e dígito extraidos do palpite
   return (
-    <>
-      {/* TEMPORÁRIO, CRIAR A LÓGICA VISUAL EM 7 SEGMENTOS DE CADA DÍGITO */}
-      <p className={color}>{numberDisplay}</p>
-    </>
+    <div className="number-container">
+      <div        className={`display display-top ${number} ${error ? "error" : ""} ${
+          correctGuess ? "correct" : ""
+        }`}
+      >
+        {/* Aqui foram criadas 4 divs extra para adicionar o efeito de led em 7 segmentos */}
+        <div className="gap top-left"></div>
+        <div className="gap top-right"></div>
+        <div className="gap bottom-left"></div>
+        <div className="gap bottom-right"></div>
+      </div>
+      <div
+        className={`display display-bottom ${number} ${error ? "error" : ""} ${
+          correctGuess ? "correct" : ""
+        }`}
+      >
+        {/* Aqui foram criadas 4 divs extra para adicionar o efeito de led em 7 segmentos */}
+        <div className="gap top-left"></div>
+        <div className="gap top-right"></div>
+        <div className="gap bottom-left"></div>
+        <div className="gap bottom-right"></div>
+      </div>
+    </div>
   );
 };
 

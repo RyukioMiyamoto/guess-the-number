@@ -1,12 +1,383 @@
-.numbers-number {
-  align-self: flex-start;
-  font-size: 145px;
-  text-align: center;
+.number-container {
+  display: flex;
+  flex-direction: column;
 }
 
+.display {
+  width: 50px;
+  height: 50px;
+  border-right: 12px solid var(--disabled);
+  border-left: 12px solid var(--disabled);
+  border-radius: 13px;
+  background-color: transparent;
+}
 
-@media (min-width: 768px) {
-  .numbers-number {
-    font-size: 180px;
-  }
+.display-top {
+  border-top: 12px solid var(--disabled);
+  border-bottom: 6px solid var(--disabled);
+  position: relative;
+  transition: border 0.5s ease;
+  opacity: 0;
+  animation: flip 0.5s forwards;
+}
+
+/*************************************************/
+/* ESTILO APLICADO PARA CRIAR O EFEITO DE LED DE 7 SEGMENTOS */
+/* CONSISTE EM UMA DIV QUE SE SOBREPORÁ NOS CANTOS DE CADA METADE DO COMPONENTE */
+.display .gap {
+  content: "";
+  display: block;
+  width: 2px;
+  height: 14px;
+  background-color: #fff;
+  position: absolute;
+}
+
+.display-top .gap.top-left {
+  left: -20%;
+  top: -35%;
+  transform: rotate(-45deg);
+}
+
+.display-top .gap.top-right {
+  right: -20%;
+  top: -35%;
+  transform: rotate(45deg);
+}
+
+.display-top .gap.bottom-left {
+  left: -20%;
+  bottom: -30%;
+  transform: rotate(60deg);
+}
+
+.display-top .gap.bottom-right {
+  right: -20%;
+  bottom: -30%;
+  transform: rotate(-60deg);
+}
+
+.display-bottom {
+  border-bottom: 12px solid var(--disabled);
+  border-top: 6px solid var(--disabled);
+  position: relative;
+  top: -2%;
+  transition: border 0.5s ease;
+  opacity: 0;
+  animation: flip 0.5s forwards;
+}
+
+.display-bottom .gap.top-left {
+  left: -20%;
+  top: -30%;
+  transform: rotate(-60deg);
+}
+
+.display-bottom .gap.top-right {
+  right: -20%;
+  top: -30%;
+  transform: rotate(60deg);
+}
+
+.display-bottom .gap.bottom-left {
+  left: -20%;
+  bottom: -35%;
+  transform: rotate(45deg);
+}
+
+.display-bottom .gap.bottom-right {
+  right: -20%;
+  bottom: -35%;
+  transform: rotate(-45deg);
+}
+
+.display-top.zero {
+  border-top-color: var(--number-guess);
+  border-right-color: var(--number-guess);
+  border-left-color: var(--number-guess);
+}
+
+.display-bottom.zero {
+  border-right-color: var(--number-guess);
+  border-left-color: var(--number-guess);
+  border-bottom-color: var(--number-guess);
+}
+
+.display-top.one {
+  border-right-color: var(--number-guess);
+}
+
+.display-bottom.one,
+.display-bottom.seven {
+  border-right-color: var(--number-guess);
+}
+
+.display-top.two,
+.display-top.three {
+  border-top-color: var(--number-guess);
+  border-right-color: var(--number-guess);
+  border-bottom-color: var(--number-guess);
+}
+
+.display-bottom.two {
+  border-top-color: var(--number-guess);
+  border-bottom-color: var(--number-guess);
+  border-left-color: var(--number-guess);
+}
+
+.display-bottom.three {
+  border-top-color: var(--number-guess);
+  border-right-color: var(--number-guess);
+  border-bottom-color: var(--number-guess);
+}
+
+.display-top.four {
+  border-right-color: var(--number-guess);
+  border-bottom-color: var(--number-guess);
+  border-left-color: var(--number-guess);
+}
+
+.display-bottom.four {
+  border-top-color: var(--number-guess);
+  border-right-color: var(--number-guess);
+}
+
+.display-top.five {
+  border-top-color: var(--number-guess);
+  border-bottom-color: var(--number-guess);
+  border-left-color: var(--number-guess);
+}
+
+.display-bottom.five {
+  border-top-color: var(--number-guess);
+  border-right-color: var(--number-guess);
+  border-bottom-color: var(--number-guess);
+}
+
+.display-top.six {
+  border-top-color: var(--number-guess);
+  border-bottom-color: var(--number-guess);
+  border-left-color: var(--number-guess);
+}
+
+.display-bottom.six {
+  border-top-color: var(--number-guess);
+  border-right-color: var(--number-guess);
+  border-bottom-color: var(--number-guess);
+  border-left-color: var(--number-guess);
+}
+
+.display-top.seven {
+  border-top-color: var(--number-guess);
+  border-right-color: var(--number-guess);
+}
+
+.display-top.eight,
+.display-bottom.eight,
+.display-top.nine {
+  border-top-color: var(--number-guess);
+  border-right-color: var(--number-guess);
+  border-bottom-color: var(--number-guess);
+  border-left-color: var(--number-guess);
+}
+
+.display-bottom.nine {
+  border-top-color: var(--number-guess);
+  border-right-color: var(--number-guess);
+}
+
+/*************************************************/
+/*************************************************/
+/* DISPLAY DE ERROS */
+.display-top.zero.error {
+  border-top-color: var(--number-error);
+  border-right-color: var(--number-error);
+  border-left-color: var(--number-error);
+}
+
+.display-bottom.zero.error {
+  border-right-color: var(--number-error);
+  border-left-color: var(--number-error);
+  border-bottom-color: var(--number-error);
+}
+
+.display-top.one.error {
+  border-right-color: var(--number-error);
+}
+
+.display-bottom.one.error,
+.display-bottom.seven.error {
+  border-right-color: var(--number-error);
+}
+
+.display-top.two.error,
+.display-top.three.error {
+  border-top-color: var(--number-error);
+  border-right-color: var(--number-error);
+  border-bottom-color: var(--number-error);
+}
+
+.display-bottom.two.error {
+  border-top-color: var(--number-error);
+  border-bottom-color: var(--number-error);
+  border-left-color: var(--number-error);
+}
+
+.display-bottom.three.error {
+  border-top-color: var(--number-error);
+  border-right-color: var(--number-error);
+  border-bottom-color: var(--number-error);
+}
+
+.display-top.four.error {
+  border-right-color: var(--number-error);
+  border-bottom-color: var(--number-error);
+  border-left-color: var(--number-error);
+}
+
+.display-bottom.four.error {
+  border-top-color: var(--number-error);
+  border-right-color: var(--number-error);
+}
+
+.display-top.five.error {
+  border-top-color: var(--number-error);
+  border-bottom-color: var(--number-error);
+  border-left-color: var(--number-error);
+}
+
+.display-bottom.five.error {
+  border-top-color: var(--number-error);
+  border-right-color: var(--number-error);
+  border-bottom-color: var(--number-error);
+}
+
+.display-top.six.error {
+  border-top-color: var(--number-error);
+  border-bottom-color: var(--number-error);
+  border-left-color: var(--number-error);
+}
+
+.display-bottom.six.error {
+  border-top-color: var(--number-error);
+  border-right-color: var(--number-error);
+  border-bottom-color: var(--number-error);
+  border-left-color: var(--number-error);
+}
+
+.display-top.seven.error {
+  border-top-color: var(--number-error);
+  border-right-color: var(--number-error);
+}
+
+.display-top.eight.error,
+.display-bottom.eight.error,
+.display-top.nine.error {
+  border-top-color: var(--number-error);
+  border-right-color: var(--number-error);
+  border-bottom-color: var(--number-error);
+  border-left-color: var(--number-error);
+}
+
+.display-bottom.nine.error {
+  border-top-color: var(--number-error);
+  border-right-color: var(--number-error);
+}
+
+/*************************************************/
+/*************************************************/
+/* DISPLAY DE ACERTOS */
+.display-top.zero.correct {
+  border-top-color: var(--number-correct);
+  border-right-color: var(--number-correct);
+  border-left-color: var(--number-correct);
+}
+
+.display-bottom.zero.correct {
+  border-right-color: var(--number-correct);
+  border-left-color: var(--number-correct);
+  border-bottom-color: var(--number-correct);
+}
+
+.display-top.one.correct {
+  border-right-color: var(--number-correct);
+}
+
+.display-bottom.one.correct,
+.display-bottom.seven.correct {
+  border-right-color: var(--number-correct);
+}
+
+.display-top.two.correct,
+.display-top.three.correct {
+  border-top-color: var(--number-correct);
+  border-right-color: var(--number-correct);
+  border-bottom-color: var(--number-correct);
+}
+
+.display-bottom.two.correct {
+  border-top-color: var(--number-correct);
+  border-bottom-color: var(--number-correct);
+  border-left-color: var(--number-correct);
+}
+
+.display-bottom.three.correct {
+  border-top-color: var(--number-correct);
+  border-right-color: var(--number-correct);
+  border-bottom-color: var(--number-correct);
+}
+
+.display-top.four.correct {
+  border-right-color: var(--number-correct);
+  border-bottom-color: var(--number-correct);
+  border-left-color: var(--number-correct);
+}
+
+.display-bottom.four.correct {
+  border-top-color: var(--number-correct);
+  border-right-color: var(--number-correct);
+}
+
+.display-top.five.correct {
+  border-top-color: var(--number-correct);
+  border-bottom-color: var(--number-correct);
+  border-left-color: var(--number-correct);
+}
+
+.display-bottom.five.correct {
+  border-top-color: var(--number-correct);
+  border-right-color: var(--number-correct);
+  border-bottom-color: var(--number-correct);
+}
+
+.display-top.six.correct {
+  border-top-color: var(--number-correct);
+  border-bottom-color: var(--number-correct);
+  border-left-color: var(--number-correct);
+}
+
+.display-bottom.six.correct {
+  border-top-color: var(--number-correct);
+  border-right-color: var(--number-correct);
+  border-bottom-color: var(--number-correct);
+  border-left-color: var(--number-correct);
+}
+
+.display-top.seven.correct {
+  border-top-color: var(--number-correct);
+  border-right-color: var(--number-correct);
+}
+
+.display-top.eight.correct,
+.display-bottom.eight.correct,
+.display-top.nine.correct {
+  border-top-color: var(--number-correct);
+  border-right-color: var(--number-correct);
+  border-bottom-color: var(--number-correct);
+  border-left-color: var(--number-correct);
+}
+
+.display-bottom.nine.correct {
+  border-top-color: var(--number-correct);
+  border-right-color: var(--number-correct);
 }

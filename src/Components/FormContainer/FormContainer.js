@@ -9,16 +9,17 @@ const FormContainer = () => {
 
   return (
     <form className="form-container">
-      {/* EXIBE O PLACEHOLDER CONFORME ESTADO DO JOGO */}
       <Input
+        // Exibe o placeholder conforme estado do jogo
         placeholder={!gameStatus ? "" : "Digite o palpite"}
+        // Trava o teclado no formato numérico para usuários mobile
         type="tel"
         inputMode="numeric"
         className="guess-input"
-        // HABILITA E DESABILITA CAMPO DE PALPITE CONFORME ESTADO DO JOGO
+        // Habilita e desabilita campo de palpite conforme estado do jogo
         disabled={!gameStatus}
-        />
-        {/* HABILITA E DESABILITA BOTÃO DE ENVIAR CONFORME ESTADO DO JOGO */}
+      />
+      {/* Habilita e desabilita botão de enviar conforme estado do jogo */}
       <Button className="btn submit-btn" text="Enviar" disabled={!gameStatus} />
     </form>
   );

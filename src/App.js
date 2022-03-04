@@ -6,10 +6,9 @@ import { GameProvider } from "./Context/GameContext";
 
 function App() {
   return (
-    // ENVOLVE A APLICAÇÃO NO CONTEXTO GLOBAL
+    // Envolve a aplicação no contexto global
     <GameProvider>
       <div className="App">
-      {/* // COMPONENTES PRINCIPAIS */}
         <Header />
         <DisplayContainer />
         <FormContainer />

@@ -13,9 +13,9 @@ const Button = ({ text, className, disabled }) => {
     setCorrectGuess,
     setError,
   } = useContext(GameContext);
+  console.log(secretNumber);
 
-  console.log(secretNumber, playerGuess);
-  // VERIFICA QUAL BOTÃO FOI CLICADO E CHAMA FUNÇÃO EQUIVALENTE
+  // Verifica qual botão foi clicado e chama função equivalente
   function handleClick(e) {
     e.preventDefault();
     if (e.target.className === "btn restart-btn show") resetGame();
@@ -24,7 +24,7 @@ const Button = ({ text, className, disabled }) => {
 
   function checkIsValid() {
     setError(false);
-    // CHECA SE O PALPITE NÃO É NÚMERO, ESTÁ VAZIO, É MAIOR QUE 300, MENOR QUE 0, 0 OU FRACIONAL
+    // Checa se o palpite: não é um número, está vazio, é maior que 300, menor que 0, 0 ou fracional
     if (
       isNaN(playerGuess) ||
       !playerGuess ||
@@ -33,36 +33,37 @@ const Button = ({ text, className, disabled }) => {
       playerGuess === 0 ||
       playerGuess % 1 !== 0
     ) {
-      // CASO UMA CONDIÇÃO SEJA VERDADEIRA, EXIBE MENSAGEM PEDINDO UM NÚMERO VÁLIDO
-      setNumberDisplay("🚫");
-      setStatusMessage("Por favor use um número válido (1 a 300)");
+      // Caso uma das condições seja verdadeira, exibe mensagem pedindo um número válido
+      setNumberDisplay("0");
+      setStatusMessage("Por favor use um número válido ( 1 a 300 )");
       setError(true);
-    } 
-    // CASO CONTRÁRIO, EXECUTA A LÓGICA DE CHECAR PALPITE
+    }
+    // Caso contrário executa a função que compara o palpite com o número secreto
     else submitGuess();
+    // Limpa o campo de input independente do palpite fornecido
+    document.querySelector(".guess-input").value = "";
   }
 
   function submitGuess() {
-    // CASO PALPITE SEJA MAIOR QUE O NÚMERO SECRETO
+    // Caso palpite seja maior que o número secreto
     if (playerGuess > secretNumber) {
       setStatusMessage("É menor");
     }
-    // CASO PALPITE SEJA MENOR QUE O NÚMERO SECRETO
+    // Caso palpite seja menor que o número secreto
     if (playerGuess < secretNumber) {
       setStatusMessage("É maior");
     }
-    // CASO PALPITE SEJA CORRETO
+    // Caso palpite esteja correto
     if (playerGuess === secretNumber) {
-      // MUDA ESTADO DO PALPITE CORRETE PARA TRUE
+      // Muda o estado do palpite correto para true
       setCorrectGuess(true);
-      // EXIBE MENSAGEM DE VITÓRIA
+      // Exibe mensagem de vitória
       setStatusMessage("Você acertou!!!!");
-      // FINALIZA O JOGO
+      // finaliza o Jogo
       setGameStatus(false);
     }
-    // LIMPA O CAMPO DE INPUT
-    document.querySelector(".guess-input").value = "";
-    // MUDA O NÚMERO EXIBIDO NO DISPLAY
+
+    // Atualiza o número exibido no display
     setNumberDisplay(playerGuess);
   }
 

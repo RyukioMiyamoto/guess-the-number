@@ -1,6 +1,6 @@
 .status-container {
   display: flex;
-  align-self: flex-end;
+  align-self: center;
   justify-content: center;
   transform: translateY(-20px);
   height: 20px;
@@ -10,6 +10,7 @@
 .status-message {
   font: 700 1rem var(--heading-text), sans-serif;
   letter-spacing: -1px;
+  max-width: 20ch;
   text-align: center;
   color: var(--guess-status);
 }

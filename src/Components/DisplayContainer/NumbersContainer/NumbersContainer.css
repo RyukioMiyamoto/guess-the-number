@@ -1,5 +1,5 @@
-.numbers-container {
+#numbers-container {
   display: flex;
-  align-self: flex-start;
-  min-height: 200px;
+  gap: 5px;
+  justify-items: center;
 }

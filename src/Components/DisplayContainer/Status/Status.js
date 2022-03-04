@@ -3,14 +3,14 @@ import { useContext } from "react";
 import GameContext from "../../../Context/GameContext";
 
 const Status = () => {
-  const { statusMessage, error } = useContext(GameContext);
+  const { statusMessage, error, secretNumber } = useContext(GameContext);
 
-  // CRIA A LÓGICA QUE DEFINE A CLASSE APLICADA NO DISPLAY DA MENSAGEM (NEUTRO, ERRO OU ACERTO)
-  // COR NEUTRA
+  // Muda a cor da mensagem de status dinamicamente conforme o estado (neutro, acerto ou erro)
+  // Neutro
   let color = "status-message";
-  // COR DE ERRO
-  if (error) color = "status-message error";
-  // COR DE ACERTO
+  // Erro
+  if (error || secretNumber === 502) color = "status-message error";
+  // Acerto
   if (statusMessage === "Você acertou!!!!") color = "status-message correct";
 
   return (

@@ -11,6 +11,7 @@ const Input = ({ placeholder, type, disabled, className, inputMode }) => {
       type={type}
       inputMode={inputMode}
       className={className}
+      // Atualiza o estado do palpite dinamicamente, conforme o mesmo é digitado no input
       onChange={({ target }) => setPlayerGuess(Number(target.value))}
       disabled={disabled}
     />

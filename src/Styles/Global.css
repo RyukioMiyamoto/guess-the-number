@@ -1,4 +1,6 @@
-/* VARIÁVEIS CSS */
+@import url("./Animations.css");
+
+/* Variáveis CSS */
 :root {
   --guess-status: #ec6b01;
   --number-guess: #262a34;
@@ -13,7 +15,7 @@
   --main-text: "Roboto";
 }
 
-/* RESETANDO ESTILOS */
+/* Resetando estilos */
 * {
   margin: 0;
   padding: 0;
@@ -26,6 +28,7 @@ body {
   background: linear-gradient(180deg, #eee 0%, #fff 100%);
 }
 
+/* Limitando o container geral da aplicação para deixar um espaço  */
 .App {
   display: grid;
   justify-items: center;
@@ -34,19 +37,8 @@ body {
   padding: 10px;
 }
 
-/* OPÇÃO DE ACESSIBILIDADE PARA NAVEGAÇÃO COM TECLADO */
 button:focus,
 input:focus {
   outline: none;
   animation: outline 1.25s;
-}
-
-@keyframes outline {
-  from {
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
-  }
-
-  to {
-    box-shadow: none;
-  }
 }
