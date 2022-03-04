@@ -12,7 +12,8 @@ const FormContainer = () => {
       {/* EXIBE O PLACEHOLDER CONFORME ESTADO DO JOGO */}
       <Input
         placeholder={!gameStatus ? "" : "Digite o palpite"}
-        type="text"
+        type="tel"
+        inputMode="numeric"
         className="guess-input"
         // HABILITA E DESABILITA CAMPO DE PALPITE CONFORME ESTADO DO JOGO
         disabled={!gameStatus}
