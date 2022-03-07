@@ -28,7 +28,7 @@ body {
   background: linear-gradient(180deg, #eee 0%, #fff 100%);
 }
 
-/* Limitando o container geral da aplicação para deixar um espaço  */
+/* Limitando o container geral da aplicação para deixar um espaço de respiro */
 .App {
   display: grid;
   justify-items: center;
@@ -41,4 +41,25 @@ button:focus,
 input:focus {
   outline: none;
   animation: outline 1.25s;
+}
+
+/* Desabilita animações e transições caso usuário tenha alguma preferência de animação reduzida */
+/* e também reseta visibilidade dos elementos que iniciariam invisíveis */
+@media (prefers-reduced-motion) {
+  .title,
+  .display-top,
+  .display-bottom,
+  .form-container {
+    opacity: 1 !important;
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .separator {
+    width: 90% !important;
+  }
+
+  .show {
+    opacity: 1 !important;
+  }
 }

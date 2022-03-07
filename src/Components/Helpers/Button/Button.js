@@ -21,9 +21,9 @@ const Button = ({ text, className, disabled }) => {
     if (e.target.className === "btn submit-btn") checkIsValid();
   }
 
+  // Checa se o palpite: não é um número, está vazio, é maior que 300, menor que 0, 0 ou fracional
   function checkIsValid() {
     setError(false);
-    // Checa se o palpite: não é um número, está vazio, é maior que 300, menor que 0, 0 ou fracional
     if (
       isNaN(playerGuess) ||
       !playerGuess ||

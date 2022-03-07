@@ -22,8 +22,9 @@
 }
 
 /*************************************************/
-/* ESTILO APLICADO PARA CRIAR O EFEITO DE LED DE 7 SEGMENTOS */
-/* CONSISTE EM UMA DIV QUE SE SOBREPORÁ NOS CANTOS DE CADA METADE DO COMPONENTE */
+/* Estilo aplicado para criar o efeito de LED de 7 segmentos */
+/* Consiste em uma div que se sobreporá nos cantos de cada metade do componente */
+
 .display .gap {
   content: "";
   display: block;
@@ -90,6 +91,10 @@
   bottom: -35%;
   transform: rotate(-45deg);
 }
+
+/*************************************************/
+/*************************************************/
+/* Display de números com cor neutra */
 
 .display-top.zero {
   border-top-color: var(--number-guess);
@@ -188,7 +193,7 @@
 
 /*************************************************/
 /*************************************************/
-/* DISPLAY DE ERROS */
+/* Display de números com erro */
 .display-top.zero.error {
   border-top-color: var(--number-error);
   border-right-color: var(--number-error);
@@ -286,7 +291,7 @@
 
 /*************************************************/
 /*************************************************/
-/* DISPLAY DE ACERTOS */
+/* Display de números corretos */
 .display-top.zero.correct {
   border-top-color: var(--number-correct);
   border-right-color: var(--number-correct);
