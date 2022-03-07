@@ -13,7 +13,6 @@ const Button = ({ text, className, disabled }) => {
     setCorrectGuess,
     setError,
   } = useContext(GameContext);
-  console.log(secretNumber);
 
   // Verifica qual botão foi clicado e chama função equivalente
   function handleClick(e) {

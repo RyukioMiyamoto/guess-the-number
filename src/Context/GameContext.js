@@ -31,29 +31,28 @@ export const GameProvider = ({ children }) => {
       const res = await fetch(
         "https://us-central1-ss-devops.cloudfunctions.net/rand?min=1&max=300"
       );
-
-      // CASO A REQUISIÇÃO NÃO VOLTE OK
-      if (!res.ok) {
-        // MOSTRA A MENSAGEM DE ERRO NO DISPLAY
-        setStatusMessage("Erro");
-        // DEFINE O NÚMERO SECRETO COMO STATUS RETORNADO
-        setSecretNumber(res.status);
-        // MOSTRA O NÚMERO DO STATUS RETORNADO
-        setNumberDisplay(res.status);
-        // PARA O JOGO
-        setGameStatus(false);
-        // MUDA ESTADO DO ERRO
-        setError(true);
-        // JOGA UM ERRO PARA PARAR A FUNÇÃO
-        throw new Error();
+      const { value } = await res.json();
+      // CASO A REQUISIÇÃO NÃO VOLTE OK OU VOLTE 0
+      if (!res.ok || value === 0) {
+          // MOSTRA A MENSAGEM DE ERRO NO DISPLAY
+          setStatusMessage("Erro");
+          // DEFINE O NÚMERO SECRETO COMO STATUS RETORNADO
+          setSecretNumber(res.status);
+          // MOSTRA O NÚMERO DO STATUS RETORNADO
+          setNumberDisplay(res.status);
+          // PARA O JOGO
+          setGameStatus(false);
+          // MUDA ESTADO DO ERRO
+          setError(true);
+          // JOGA UM ERRO PARA PARAR A FUNÇÃO
+          throw new Error(`${res.status} | Erro na requisição`);
       }
       // CASO REQUISIÇÃO SEJA OK EXTRAI O NÚMERO RETORNADO
-      const { value } = await res.json();
       // DEFINE O NÚMERO RETORNADO COMO NÚMERO SECRETO
       setSecretNumber(value);
     } catch (err) {
       // PEGA O ERRO JOGADO
-      console.error(err);
+      console.error(err.message);
     }
   }
 
