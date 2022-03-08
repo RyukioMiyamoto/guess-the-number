@@ -25,7 +25,7 @@
 body {
   font: 700 0.75rem var(--main-text), sans-serif;
   min-height: 100vh;
-  background: linear-gradient(180deg, #eee 0%, #fff 100%);
+  background: linear-gradient(180deg, #eee 0%, #fff 100%) no-repeat;
 }
 
 /* Limitando o container geral da aplicação para deixar um espaço de respiro */
