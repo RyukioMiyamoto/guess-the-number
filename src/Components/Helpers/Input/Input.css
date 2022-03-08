@@ -5,12 +5,11 @@
   padding: 14px 12px;
   border: 1px solid var(--details);
   border-radius: 4px;
-  transition: border 0.125s ease;
+  transition: border 0.25s ease;
 }
 
 .guess-input:focus {
   border-color: var(--guess-status);
-  outline: none;
 }
 
 .guess-input::placeholder {
@@ -20,8 +19,4 @@
 
 .guess-input:disabled {
   background-color: var(--placeholder-disabled);
-}
-
-.guess-input:disabled:hover {
-  cursor: not-allowed;
 }

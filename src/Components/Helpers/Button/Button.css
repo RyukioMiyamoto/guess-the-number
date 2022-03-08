@@ -6,7 +6,7 @@
   font: 700 var(--main-text);
   color: #fff;
   cursor: pointer;
-  transition: border 0.125s ease;
+  transition: all 0.25s ease;
 }
 
 .restart-btn {
@@ -41,7 +41,6 @@
 
 .submit-btn:disabled {
   background: var(--disabled);
-  cursor: not-allowed;
 }
 
 @media (min-width: 768px) {

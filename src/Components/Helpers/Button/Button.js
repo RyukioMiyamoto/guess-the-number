@@ -12,7 +12,7 @@ const Button = ({ text, className, disabled }) => {
     setNumberDisplay,
     setError,
   } = useContext(GameContext);
-  const { playerGuess } = useContext(GuessContext);
+  const { playerGuess, setPlayerGuess } = useContext(GuessContext);
   // Verifica qual botão foi clicado e chama função equivalente
   function handleClick(e) {
     e.preventDefault();
@@ -36,8 +36,17 @@ const Button = ({ text, className, disabled }) => {
     }
     // Caso contrário executa a função que compara o palpite com o número secreto
     else submitGuess();
+    // Reseta o palpite
+    clearInput();
+  }
+
+  function clearInput() {
     // Limpa o campo de input independente do palpite fornecido
     document.querySelector(".guess-input").value = "";
+    // Foca no input
+    document.querySelector(".guess-input").focus();
+    // Limpa o palpite do jogador
+    setPlayerGuess(0);
   }
 
   function submitGuess() {
