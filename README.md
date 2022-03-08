@@ -1,70 +1,33 @@
-# Getting Started with Create React App
+# Overview
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Project developed following Studio Sol's proposal. \
+The application consists of a guessing game where a request is made to an external API, which returns a number between 1 and 300 that the user must guess. \
+Application should be developed using HTML, CSS and Javascript, which led me to choose using the React library.
 
-## Available Scripts
+# Initial Design
 
-In the project directory, you can run:
+## Mobile
 
-### `npm start`
+![the user got the answer right in the mobile version of the guessing game ](./src/Assets/Images/preview1.png "Right answer").
+![the application got an error in the mobile version ](./src/Assets/Images/preview2.png "Error").
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Desktop
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+![the desktop version of the application asking the user to guess a number](./src/Assets/Images/preview3.png "Desktop design").
 
-### `npm test`
+# Issues and what I've learned
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The biggest challenge was figuring out how to make the number display into an 7-segment LED styled digit, which I did after implementing the main application logic (until that point I was using a simple paragraph to display the numbers). \
+The solution I got to was creating a component that consists of two divs stacked together and styling the corresponding borders according to the numbers given by the player inputs.
 
-### `npm run build`
+Upon debugging the application, I realized that some components kept re-rendering every time the input was changed, which could cause perfomance issues. \
+After some research I've discovered that this is due to the context API, which doesn't discriminate which states are being updated, but rather automatically updates everything being consumed inside the provider.
+Up to this point, I had created only a global context that held all the states, including the player guesses, so my solution was creating a separate context specific for them, which was then provided to the input and button components.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Improvement for future versions
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Project is lacking tests, which I have yet to learn how to implement.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Live Demo
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[https://guess-the-number-yukio.netlify.app](https://guess-the-number-yukio.netlify.app)
