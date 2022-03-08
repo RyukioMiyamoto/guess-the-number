@@ -1,65 +1,65 @@
-const { createContext, useEffect, useState } = require("react");
+import { createContext, useEffect, useState } from "react";
 
-// CRIA O CONTEXTO GLOBAL COM ESTADOS DA APLICAÇÃO
-const GameContext = createContext();
+// Cria o contexto global com estados globais da aplicação
+const GameContext = createContext("");
 
 export const GameProvider = ({ children }) => {
-  // JOGO RODANDO
+  // Cria estado do jogo rodando
   const [gameStatus, setGameStatus] = useState(true);
-  // ERRO
+  // Cria estado de Erro
   const [error, setError] = useState(false);
-  // NÚMERO SECRETO
+  // Cria estado do número secreto
   const [secretNumber, setSecretNumber] = useState(null);
-  // DISPLAY DO STATUS
+  // Cria estado da mensagem de status
   const [statusMessage, setStatusMessage] = useState("");
-  // DISPLAY DO NÚMERO
+  // Cria estado do display de número
   const [numberDisplay, setNumberDisplay] = useState(0);
-  // PALPITE DO JOGADOR
-  const [playerGuess, setPlayerGuess] = useState(0);
-  // PALPITE CORRETO
+  // Cria estado do palpite correto
   const [correctGuess, setCorrectGuess] = useState(false);
 
-  // GERA UM NÚMERO SECRETO AO INICIAR APLICAÇÃO
+  // Gera um número secreto ao iniciar aplicação
   useEffect(() => {
     getNumber();
   }, []);
 
-  // FUNÇÃO QUE GERA NÚMERO SECRETO
+  // Função que gera o número secreto
   async function getNumber() {
     try {
-      // FAZ A REQUISIÇÃO
+      // Faz a requisição
       const res = await fetch(
         "https://us-central1-ss-devops.cloudfunctions.net/rand?min=1&max=300"
       );
       const { value } = await res.json();
-      // CASO A REQUISIÇÃO NÃO VOLTE OK OU VOLTE 0
-      if (!res.ok || value === 0) {
-          // MOSTRA A MENSAGEM DE ERRO NO DISPLAY
-          setStatusMessage("Erro");
-          // DEFINE O NÚMERO SECRETO COMO STATUS RETORNADO
-          setSecretNumber(res.status);
-          // MOSTRA O NÚMERO DO STATUS RETORNADO
-          setNumberDisplay(res.status);
-          // PARA O JOGO
-          setGameStatus(false);
-          // MUDA ESTADO DO ERRO
-          setError(true);
-          // JOGA UM ERRO PARA PARAR A FUNÇÃO
-          throw new Error(`${res.status} | Erro na requisição`);
+      // Caso a requisição volte não-ok, volte menor que 0 ou maior que 300
+      if (!res.ok || value <= 0 || value > 300) {
+        // Mostra a mensagem de erro no display
+        setStatusMessage("Erro");
+        // Define o número secreto como status retornado
+        setSecretNumber(res.status);
+        // Mostra o número do status retornado, contanto que ele volte diferente de 200
+        if (res.status !== 200) setNumberDisplay(res.status);
+        else setNumberDisplay(0);
+        // Encerra o jogo
+        setGameStatus(false);
+        // Muda estado do erro
+        setError(true);
+        // Joga um erro para parar a função
+        throw new Error(
+          `${res.status !== 200 ? res.status : "?"} | Erro na requisição`
+        );
       }
-      // CASO REQUISIÇÃO SEJA OK EXTRAI O NÚMERO RETORNADO
-      // DEFINE O NÚMERO RETORNADO COMO NÚMERO SECRETO
+      // Caso requisição seja ok extrai o número retornado
+      // e define o mesmo como número secreto
       setSecretNumber(value);
     } catch (err) {
-      // PEGA O ERRO JOGADO
+      // Pega o erro jogado
       console.error(err.message);
     }
   }
 
-  // FUNÇÃO DE ZERAR ESTADOS
+  // Função de resetar estados
   function resetGame() {
     setSecretNumber(null);
-    setPlayerGuess(null);
     setNumberDisplay(0);
     setStatusMessage("");
     setGameStatus(true);
@@ -68,8 +68,25 @@ export const GameProvider = ({ children }) => {
     getNumber();
   }
 
+  // Função de vitória
+  function winGame() {
+    // Muda o estado do palpite correto para true
+    setCorrectGuess(true);
+    // Exibe mensagem de vitória
+    setStatusMessage("Você acertou!!!!");
+    // finaliza o Jogo
+    setGameStatus(false);
+  }
+
+  // Função de exibir mensagem de erro
+  function displayError() {
+    setNumberDisplay("0");
+    setStatusMessage("Por favor use um número válido ( 1 a 300 )");
+    setError(true);
+  }
+  
   return (
-    // CRIA O PROVIDER DE CONTEXTO PARA TODA A APLICAÇÃO
+    // Provê o contexto global da aplicação
     <GameContext.Provider
       value={{
         gameStatus,
@@ -83,11 +100,11 @@ export const GameProvider = ({ children }) => {
         setNumberDisplay,
         statusMessage,
         setStatusMessage,
-        playerGuess,
-        setPlayerGuess,
         correctGuess,
         setCorrectGuess,
         resetGame,
+        winGame,
+        displayError
       }}
     >
       {children}

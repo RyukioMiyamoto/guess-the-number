@@ -1,19 +1,18 @@
+import "./Button.css";
 import { useContext } from "react";
 import GameContext from "../../../Context/GameContext";
-import "./Button.css";
-
+import GuessContext from "../../../Context/GuessContext";
 const Button = ({ text, className, disabled }) => {
   const {
+    winGame,
     resetGame,
+    displayError,
     secretNumber,
-    playerGuess,
-    setGameStatus,
     setStatusMessage,
     setNumberDisplay,
-    setCorrectGuess,
     setError,
   } = useContext(GameContext);
-
+  const { playerGuess } = useContext(GuessContext);
   // Verifica qual botão foi clicado e chama função equivalente
   function handleClick(e) {
     e.preventDefault();
@@ -33,9 +32,7 @@ const Button = ({ text, className, disabled }) => {
       playerGuess % 1 !== 0
     ) {
       // Caso uma das condições seja verdadeira, exibe mensagem pedindo um número válido
-      setNumberDisplay("0");
-      setStatusMessage("Por favor use um número válido ( 1 a 300 )");
-      setError(true);
+      displayError();
     }
     // Caso contrário executa a função que compara o palpite com o número secreto
     else submitGuess();
@@ -54,12 +51,7 @@ const Button = ({ text, className, disabled }) => {
     }
     // Caso palpite esteja correto
     if (playerGuess === secretNumber) {
-      // Muda o estado do palpite correto para true
-      setCorrectGuess(true);
-      // Exibe mensagem de vitória
-      setStatusMessage("Você acertou!!!!");
-      // finaliza o Jogo
-      setGameStatus(false);
+      winGame();
     }
 
     // Atualiza o número exibido no display

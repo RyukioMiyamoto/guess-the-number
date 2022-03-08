@@ -1,10 +1,9 @@
 import { useContext } from "react";
-import GameContext from "../../../Context/GameContext";
+import GuessContext from "../../../Context/GuessContext";
 import "./Input.css";
 
 const Input = ({ placeholder, type, disabled, className, inputMode }) => {
-  const { setPlayerGuess } = useContext(GameContext);
-
+  const { setPlayerGuess } = useContext(GuessContext);
   return (
     <input
       placeholder={placeholder}

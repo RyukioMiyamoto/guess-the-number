@@ -6,14 +6,14 @@ import { GameProvider } from "./Context/GameContext";
 
 function App() {
   return (
-    // Envolve a aplicação no contexto global
-    <GameProvider>
-      <div className="App">
-        <Header />
+    <div className="App">
+      <Header />
+      {/* Provê o contexto global onde ele será consumido */}
+      <GameProvider>
         <DisplayContainer />
         <FormContainer />
-      </div>
-    </GameProvider>
+      </GameProvider>
+    </div>
   );
 }
 
