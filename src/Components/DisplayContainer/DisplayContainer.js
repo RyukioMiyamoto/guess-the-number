@@ -6,7 +6,7 @@ import { useContext } from "react";
 import GameContext from "../../Context/GameContext";
 
 const DisplayContainer = () => {
-  const { gameStatus } = useContext(GameContext);
+  const { gameStatus, resetGame } = useContext(GameContext);
 
   return (
     <div className="display-container">
@@ -20,7 +20,7 @@ const DisplayContainer = () => {
         text="Nova Partida"
         // Muda a class do botão 'Nova Partida' dinâmicamente, conforme erro ou acerto
         className={`btn restart-btn ${!gameStatus && "show"}`}
-        onClick="resetGame"
+        onClick={resetGame}
       />
     </div>
   );
