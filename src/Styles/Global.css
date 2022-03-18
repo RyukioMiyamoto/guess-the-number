@@ -48,7 +48,30 @@ button:disabled {
 }
 
 button:focus {
-  box-shadow: 0 0 5px 2px rgba(236, 107, 1, .75);
+  box-shadow: 0 0 5px 2px rgba(236, 107, 1, 0.75);
+}
+
+.guess-input {
+  background-color: #fff;
+  width: 217px;
+  height: 42px;
+  padding: 14px 12px;
+  border: 1px solid var(--details);
+  border-radius: 4px;
+  transition: border 0.25s ease;
+}
+
+.guess-input:focus {
+  border-color: var(--guess-status);
+}
+
+.guess-input::placeholder {
+  color: var(--placeholder);
+  font: 400 var(--main-text), sans-serif;
+}
+
+.guess-input:disabled {
+  background-color: var(--placeholder-disabled);
 }
 
 /* Desabilita animações e transições caso usuário tenha alguma preferência de animação reduzida */

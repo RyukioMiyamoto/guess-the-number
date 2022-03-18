@@ -2,25 +2,27 @@ import "./FormContainer.css";
 import React, { useContext } from "react";
 import GameContext from "../../Context/GameContext";
 import Button from "../Helpers/Button/Button";
-import Input from "../Helpers/Input/Input";
-import { GuessProvider } from "../../Context/GuessContext";
+import GuessContext from "../../Context/GuessContext";
 
 const FormContainer = () => {
   const { gameStatus } = useContext(GameContext);
+  const { setPlayerGuess } = useContext(GuessContext);
 
   return (
     // Envolve o componente no contexto do palpite
-    <GuessProvider>
       <form className="form-container">
-        <Input
+        <label htmlFor="guess" />
+        <input
           // Exibe o placeholder conforme estado do jogo
           placeholder={!gameStatus ? "" : "Digite o palpite"}
           // Trava o teclado no formato numérico para usuários mobile
           type="tel"
           inputMode="numeric"
           className="guess-input"
-          // Checa estado do jogo e passa o valor booleano contrário a ele como props
-          // definindo se está disabled ou não
+          // Atualiza o estado do palpite dinamicamente, conforme o mesmo é digitado no input
+          onChange={({ target }) => setPlayerGuess(Number(target.value))}
+          name="guess"
+          id="guess"
           disabled={!gameStatus}
         />
         {/* Habilita e desabilita botão de enviar conforme estado do jogo seguindo mesma lógica do input */}
@@ -32,7 +34,6 @@ const FormContainer = () => {
           disabled={!gameStatus}
         />
       </form>
-    </GuessProvider>
   );
 };
 
