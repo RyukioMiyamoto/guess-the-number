@@ -18,6 +18,7 @@ const DisplayContainer = () => {
       <Button
         type="button"
         text="Nova Partida"
+        // Muda a class do botão 'Nova Partida' dinâmicamente, conforme erro ou acerto
         className={`btn restart-btn ${!gameStatus && "show"}`}
         onClick="resetGame"
       />

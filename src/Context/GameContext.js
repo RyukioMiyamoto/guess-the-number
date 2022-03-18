@@ -84,7 +84,7 @@ export const GameProvider = ({ children }) => {
     setStatusMessage("Por favor use um número válido ( 1 a 300 )");
     setError(true);
   }
-  
+
   return (
     // Provê o contexto global da aplicação
     <GameContext.Provider
@@ -104,7 +104,7 @@ export const GameProvider = ({ children }) => {
         setCorrectGuess,
         resetGame,
         winGame,
-        displayError
+        displayError,
       }}
     >
       {children}
