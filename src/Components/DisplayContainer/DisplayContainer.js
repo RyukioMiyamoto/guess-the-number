@@ -7,8 +7,6 @@ import GameContext from "../../Context/GameContext";
 
 const DisplayContainer = () => {
   const { gameStatus } = useContext(GameContext);
-  // Cria a lógica que define se botão de reiniciar está visível
-  const displayButton = gameStatus ? "btn restart-btn" : "btn restart-btn show";
 
   return (
     <div className="display-container">
@@ -17,7 +15,12 @@ const DisplayContainer = () => {
       {/* Exibe os números de palpite ou erro de requisição */}
       <Numbers />
       {/* Botão para iniciar nova partida */}
-      <Button text="Nova Partida" className={displayButton} />
+      <Button
+        type="button"
+        text="Nova Partida"
+        className={`btn restart-btn ${!gameStatus && "show"}`}
+        onClick="resetGame"
+      />
     </div>
   );
 };
