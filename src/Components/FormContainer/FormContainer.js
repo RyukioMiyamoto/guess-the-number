@@ -7,6 +7,7 @@ import { GuessProvider } from "../../Context/GuessContext";
 
 const FormContainer = () => {
   const { gameStatus } = useContext(GameContext);
+  
   return (
     // Envolve o componente no contexto do palpite
     <GuessProvider>
